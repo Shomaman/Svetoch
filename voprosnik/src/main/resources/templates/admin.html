@@ -1,0 +1,111 @@
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Администраторская панель</title>
+</head>
+<body>
+Добавить тему
+<form method="post" action="admin">
+    <input type="text" placeholder="Введите тему" name="title" >
+    <input type="submit" placeholder="Добавить тему">
+</form>
+Выберите тему, к которую хотите удалить.
+
+<table>
+    <tr th:each="theme: ${themes}">
+
+        <td  th:text="${theme.id}" />
+        <td th:text="${theme.title}" />
+        <td><form method="post" action="deleteTheme">
+            <input type="hidden" name="id" th:value="${theme.id}" >
+            <input type="submit" value="Удалить тему">
+        </form>
+        </td>
+        <td><form method="post" action="updateTheme">
+            <input type="hidden" name="id" th:value="${theme.id}" >
+            <input type="text" name="title" th:value="${theme.title}" >
+            <input type="submit" value="Изменить название темы">
+        </form>
+        </td>
+
+    </tr>
+</table>
+
+Выберите тему, вопросы которой хотите редактировать
+<form method="post" action="checkTheme">
+    <select name="themeId">
+        <option th:each="theme : ${themes}" th:value="${theme.id}" th:text="${theme.title}" ></option>
+    </select>
+    <input type="submit" value="Выбрать тему для редактирования">
+</form>
+<table>
+    <tr th:each="question: ${questions}">
+
+        <td  th:text="${question.id}" />
+        <td th:text="${question.title}" />
+        <td><form method="post" action="deleteQuestion">
+            <input type="hidden" name="questionId" th:value="${question.id}" >
+            <input type="submit" value="Удалить вопрос">
+        </form>
+        </td>
+        <td><form method="post" action="updateQuestion">
+            <input type="hidden" name="questionId" th:value="${question.id}" >
+            <input type="text" name="titleQuestion" th:value="${question.title}" >
+            <input type="submit" value="Изменить вопрос">
+        </form>
+        </td>
+    </tr>
+</table>
+
+Добавить вопрос
+<form method="post" action="addQuestion">
+    <input type="hidden" name="themeId" th:value="${themeId}" >
+    <input type="text" placeholder="Введите вопрос" name="titleQuestion" >
+    <input type="submit" value="Добавить вопрос">
+</form>
+Выберите вопрос, ответы на который хотите редактировать
+<form method="post" action="checkQuestion">
+    <select name="questionId">
+        <option th:each="question : ${questions}" th:value="${question.id}" th:text="${question.title}" ></option>
+    </select>
+    <input type="submit" value="Выбрать тему для редактирования">
+</form>
+Добавить ответ
+<form method="post" action="addAnswer">
+    <input type="hidden" name="questionId" th:value="${questionId}" >
+    <input type="text" placeholder="Введите ответ" name="titleAnswer" >
+    <label>Верный ответ</label>
+    <input name="isRight" type="radio" value="true"> Да</p>
+    <input name="isRight" type="radio" value="false"> Нет</p>
+    <input type="submit" value="Добавить вопрос">
+</form>
+<table>
+    <tr th:each="answer: ${answers}">
+
+        <td  th:text="${answer.id}" />
+        <td th:text="${answer.title}" />
+        <td th:text="${answer.isRight} " />
+        <td><form method="post" action="deleteAnswer">
+            <input type="hidden" name="answerId" th:value="${answer.id}" >
+            <input type="submit" value="Удалить ответ">
+        </form>
+        </td>
+        <td><form method="post" action="updateAnswer">
+            <input type="hidden" name="answerId" th:value="${answer.id}" >
+            <input type="text" name="titleAnswer" th:value="${answer.title}" >
+            <label>Верный ответ</label>
+            <input name="isRight" type="radio" value="true"> Да</p>
+            <input name="isRight" type="radio" value="false"> Нет</p>
+            <input type="submit" value="Изменить ответ">
+        </form>
+        </td>
+    </tr>
+</table>
+</body>
+</html>

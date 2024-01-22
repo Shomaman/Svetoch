@@ -1,0 +1,36 @@
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Тест</title>
+</head>
+<body>
+Выберите тест.
+<form method="post" action="checkThemeForTest">
+<select name="themeId">
+    <option th:each="theme : ${themes}" th:value="${theme.id}" th:text="${theme.title}"></option>
+</select>
+    <input type="submit" value="Выбрать">
+</form>
+        <p th:text="${questionTitle}" />
+            <table>
+                        <form method="post" action="checkAnswer">
+                <tr th:each="answer: ${answers}">
+                    <td th:text="${answer.title}" />
+                    <td>
+                            <input name="isRight" type="radio" th:value="${answer.id}" >
+                    </td>
+                </tr>
+                            <input name="questionId" type="hidden" th:value="${questionId}">
+                            <input name="themeId" type="text" th:value="${themeId}">
+                            <input type="submit" value="Ответить">
+                        </form>
+            </table>
+<p th:text="${countRigthAnswers}">Количество правильных ответов</p>
+</body>
+</html>
