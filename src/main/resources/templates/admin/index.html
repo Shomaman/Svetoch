@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Добро пожаловать в админ панель</title>
+</head>
+<body>
+<h1>Aдмин панель</h1>
+<table>
+    <tr th:each="theme: ${themes}">
+        <td th:text="${theme.title}"></td>
+    </tr>
+</table>
+<form action="/" method="post">
+    <input type="text" id="title" placeholder="Название темы">
+    <input type="submit" value="Сохранить">
+</form>
+</body>
+</html>
