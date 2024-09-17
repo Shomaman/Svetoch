@@ -1,12 +1,26 @@
 package ru.Kazma.Svetoch.entity;
 
+import jakarta.persistence.*;
+
 import java.util.List;
 import java.util.Objects;
 
+@Entity
+@Table(name = "themes")
 public class ThemeEntity {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false, unique = true)
     private Integer id;
+
+    @Column(name = "title", nullable = false)
     private String title;
-    private List<QuestionEntity> questions;
+
+
+    //private List<QuestionEntity> questions;
+
+    public ThemeEntity() {
+    }
 
     public ThemeEntity(Integer id, String title) {
         this.id = id;
@@ -17,9 +31,6 @@ public class ThemeEntity {
         return id;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     public String getTitle() {
         return title;
@@ -29,7 +40,7 @@ public class ThemeEntity {
         this.title = title;
     }
 
-    public List<QuestionEntity> getQuestions() {
+   /* public List<QuestionEntity> getQuestions() {
         return questions;
     }
 
@@ -48,5 +59,5 @@ public class ThemeEntity {
     @Override
     public int hashCode() {
         return Objects.hash(id, title, questions);
-    }
+    }*/
 }

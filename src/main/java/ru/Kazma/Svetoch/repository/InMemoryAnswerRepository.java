@@ -33,6 +33,7 @@ public class InMemoryAnswerRepository implements AnswerRepository {
     @Override
     public void update(String text, boolean isCorrect, Integer answerId) {
         AnswerEntity answer = new AnswerEntity(answerId, text, isCorrect);
+        
         db.getAnswers().set(answerId, answer);
     }
 
