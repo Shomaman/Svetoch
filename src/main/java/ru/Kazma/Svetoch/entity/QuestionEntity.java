@@ -1,14 +1,27 @@
 package ru.Kazma.Svetoch.entity;
 
 
+import jakarta.persistence.*;
+
 import java.util.List;
 import java.util.Objects;
-
+@Entity
+@Table(name = "question")
 public class QuestionEntity {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", unique = true, nullable = false)
     private Integer id;
+    @Column(name = "title",nullable = false)
     private String title;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "theme_id",nullable = false)
     private ThemeEntity theme;
+    @OneToMany(mappedBy = "question",fetch = FetchType.EAGER)
     private List<AnswerEntity> answers;
+
+    public QuestionEntity() {
+     }
 
     public QuestionEntity(Integer id, String title) {
         this.id = id;

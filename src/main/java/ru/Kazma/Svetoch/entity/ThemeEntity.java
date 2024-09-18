@@ -16,8 +16,8 @@ public class ThemeEntity {
     @Column(name = "title", nullable = false)
     private String title;
 
-
-    //private List<QuestionEntity> questions;
+    @OneToMany(mappedBy = "theme")
+    private List<QuestionEntity> questions;
 
     public ThemeEntity() {
     }
@@ -40,7 +40,7 @@ public class ThemeEntity {
         this.title = title;
     }
 
-   /* public List<QuestionEntity> getQuestions() {
+    public List<QuestionEntity> getQuestions() {
         return questions;
     }
 
@@ -59,5 +59,5 @@ public class ThemeEntity {
     @Override
     public int hashCode() {
         return Objects.hash(id, title, questions);
-    }*/
+    }
 }

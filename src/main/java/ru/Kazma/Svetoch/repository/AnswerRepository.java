@@ -1,18 +1,10 @@
 package ru.Kazma.Svetoch.repository;
 
+import org.springframework.data.jpa.repository.JpaRepository;
 import ru.Kazma.Svetoch.entity.AnswerEntity;
 
 import java.util.List;
 
-public interface AnswerRepository {
-    AnswerEntity findById(Integer answerId);
-
-    void save(String text, boolean isCorrect);
-
-    void delete(Integer answerId);
-
-    void update(String text, boolean isCorrect, Integer answerId);
-
-    List<AnswerEntity> findAll();
+public interface AnswerRepository extends JpaRepository<AnswerEntity,Integer> {
 
 }
