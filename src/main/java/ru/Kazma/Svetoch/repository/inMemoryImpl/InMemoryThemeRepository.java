@@ -1,11 +1,10 @@
-package ru.Kazma.Svetoch.repository;
+package ru.Kazma.Svetoch.repository.inMemoryImpl;
 
-import org.springframework.stereotype.Repository;
 import ru.Kazma.Svetoch.entity.QuestionEntity;
 import ru.Kazma.Svetoch.entity.ThemeEntity;
 
 import java.util.List;
-@Repository
+
 public class InMemoryThemeRepository {
     private final DB db;
 
@@ -20,7 +19,7 @@ public class InMemoryThemeRepository {
 
 
     public void save(String title) {
-        int themeId =db.getThemes()
+        int themeId = db.getThemes()
                 .stream()
                 .map(ThemeEntity::getId)
                 .max(Integer::compareTo)

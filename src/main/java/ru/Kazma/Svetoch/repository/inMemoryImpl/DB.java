@@ -1,4 +1,4 @@
-package ru.Kazma.Svetoch.repository;
+package ru.Kazma.Svetoch.repository.inMemoryImpl;
 
 import org.springframework.stereotype.Component;
 import ru.Kazma.Svetoch.entity.AnswerEntity;

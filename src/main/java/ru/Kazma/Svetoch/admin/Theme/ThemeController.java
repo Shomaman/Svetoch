@@ -1,8 +1,10 @@
-package ru.Kazma.Svetoch.admin;
+package ru.Kazma.Svetoch.admin.Theme;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import ru.Kazma.Svetoch.admin.Theme.dto.CreateThemeDto;
+import ru.Kazma.Svetoch.admin.Theme.dto.EditThemeDto;
 import ru.Kazma.Svetoch.entity.ThemeEntity;
 import ru.Kazma.Svetoch.repository.ThemeRepository;
 
