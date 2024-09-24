@@ -5,6 +5,6 @@ import org.springframework.stereotype.Repository;
 import ru.Kazma.Svetoch.entity.QuestionEntity;
 
 @Repository
-public interface QuestionRepository extends JpaRepository<QuestionEntity,Long> {
+public interface QuestionRepository extends JpaRepository<QuestionEntity,Integer> {
 
 }

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<table>
+    <tr th:each="question: ${questions}">
+        <td th:text="${question.title}"></td>
+        <td><form action="question/edit" method="get">
+            <input type="hidden" name="id" th:value="${question.id}" />
+            <input type="submit" value="Редактировать" />
+        </form></td>
+        <td><form action="question/delete" method="post">
+            <input type="hidden" name="id" th:value="${question.id}" />
+            <input type="submit" value="Удалить" />
+        </form></td>
+    </tr>
+</table>
+<a href="localhost:8080/admin/theme/create">Добавить новую тему</a>
+</body>
+</html>

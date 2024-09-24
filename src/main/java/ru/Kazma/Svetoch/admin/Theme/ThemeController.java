@@ -21,7 +21,7 @@ public class ThemeController {
     public String getStartPage(Model model) {
         model.addAttribute("themes", themeRepository.findAll());
         System.out.println(themeRepository.findAll());
-        return "admin/index";
+        return "admin/theme/themes";
     }
     @GetMapping("theme/create")
     public String createNewTheme() {
@@ -32,7 +32,7 @@ public class ThemeController {
         ThemeEntity themeEntity = new ThemeEntity();
         themeEntity.setTitle(theme.title());
         themeRepository.save(themeEntity);
-        return "redirect:/admin/";
+        return "redirect:/admin/themes";
     }
     @DeleteMapping("theme/delete")
     public void deleteTheme(@RequestParam Integer id) {
