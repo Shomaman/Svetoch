@@ -6,20 +6,23 @@ import org.springframework.web.bind.annotation.*;
 import ru.Kazma.Svetoch.admin.Theme.dto.CreateThemeDto;
 import ru.Kazma.Svetoch.admin.Theme.dto.EditThemeDto;
 import ru.Kazma.Svetoch.entity.ThemeEntity;
+import ru.Kazma.Svetoch.repository.QuestionRepository;
 import ru.Kazma.Svetoch.repository.ThemeRepository;
 
 @Controller
 @RequestMapping("/admin")
 public class ThemeController {
     private final ThemeRepository themeRepository;
-
-    public ThemeController(ThemeRepository themeRepository) {
+    private final QuestionRepository questionRepository;
+    public ThemeController(ThemeRepository themeRepository, QuestionRepository questionRepository) {
         this.themeRepository = themeRepository;
+        this.questionRepository = questionRepository;
     }
 
     @GetMapping("/themes")
     public String getStartPage(Model model) {
         model.addAttribute("themes", themeRepository.findAll());
+
         System.out.println(themeRepository.findAll());
         return "admin/theme/themes";
     }
@@ -38,10 +41,12 @@ public class ThemeController {
     public void deleteTheme(@RequestParam Integer id) {
         themeRepository.deleteById(id);
     }
+
     @GetMapping("theme/edit")
     public String editTheme(@RequestParam Integer id, Model model) {
         ThemeEntity themeEntity = themeRepository.findById(id).get();
         model.addAttribute("theme", themeEntity);
+        model.addAttribute("questions", questionRepository.findByTheme_Id(id));
         return "admin/theme/edit";
     }
     @PutMapping("theme/edit")

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Добавление ответа</title>
+</head>
+<body>
+<form method="post" action="create">
+    <input type="text" name="content" id="title">
+    <p><input name="isCorrect" type="radio" value="true"> Правильный ответ</p>
+    <p><input name="isCorrect" type="radio" value="false"> Неправильный ответ</p>
+    <select name="questionId" id="type"  >
+        <option th:each="question: ${questions}" th:value="${question.id}" th:text="${question.title}"></option>
+    </select>
+    <input type="submit" value="Добавить">
+</form>
+</body>
+</html>

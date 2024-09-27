@@ -2,17 +2,12 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Изменение темы</title>
+    <title>Изменение вопроса</title>
 </head>
 <body>
-<form method="post" action="theme/edit">
+<form method="post" action="answer/edit">
     <input type="text" name="title" id="title">
     <input type="submit" value="Изменить">
 </form>
-<table>
-    <tr th:each="question: ${questions}">
-        <td th:text="${question.title}"></td>
-    </tr>
-</table>
 </body>
 </html>

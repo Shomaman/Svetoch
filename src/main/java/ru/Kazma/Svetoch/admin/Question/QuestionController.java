@@ -6,15 +6,20 @@ import org.springframework.web.bind.annotation.*;
 import ru.Kazma.Svetoch.admin.Question.dto.CreateQuestionDto;
 import ru.Kazma.Svetoch.admin.Question.dto.EditQuestionDto;
 import ru.Kazma.Svetoch.entity.QuestionEntity;
+import ru.Kazma.Svetoch.repository.AnswerRepository;
 import ru.Kazma.Svetoch.repository.QuestionRepository;
+import ru.Kazma.Svetoch.repository.ThemeRepository;
 
 @Controller
 @RequestMapping("/admin")
 public class QuestionController {
     private final QuestionRepository questionRepository;
-
-    public QuestionController(QuestionRepository questionRepository) {
+    private final ThemeRepository themeRepository;
+    private final AnswerRepository answerRepository;
+    public QuestionController(QuestionRepository questionRepository, ThemeRepository themeRepository, AnswerRepository answerRepository) {
         this.questionRepository = questionRepository;
+        this.themeRepository = themeRepository;
+        this.answerRepository = answerRepository;
     }
 
     @GetMapping("/questions")
@@ -24,14 +29,16 @@ public class QuestionController {
     }
 
     @GetMapping("question/create")
-    public String createNewQuestion() {
+    public String createNewQuestion(Model model) {
+        model.addAttribute("themes", themeRepository.findAll());
         return "admin/question/create";
     }
 
     @PostMapping("question/create")
-    public String createNewQuestion(@RequestParam("title") CreateQuestionDto question) {
+    public String createNewQuestion(@ModelAttribute CreateQuestionDto question) {
         QuestionEntity questionEntity = new QuestionEntity();
         questionEntity.setTitle(question.title());
+        questionEntity.setTheme(themeRepository.findById(Integer.parseInt(question.themeId())).get());
         questionRepository.save(questionEntity);
         return "redirect:/admin/questions";
     }
@@ -45,6 +52,7 @@ public class QuestionController {
     public String editQuestion(@RequestParam Integer id, Model model) {
         QuestionEntity questionEntity = questionRepository.findById(id).get();
         model.addAttribute("question", questionEntity);
+        model.addAttribute("answers", answerRepository.findAllByQuestion(questionEntity));
         return "admin/question/edit";
     }
 

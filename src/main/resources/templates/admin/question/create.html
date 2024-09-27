@@ -1,12 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Добавление вопроса</title>
 </head>
 <body>
-<form method="post" action="question/create">
+<form method="post" action="create">
     <input type="text" name="title" id="title">
+    <select name="themeId" id="type"  >
+        <option th:each="theme: ${themes}" th:value="${theme.id}" th:text="${theme.title}"></option>
+    </select>
     <input type="submit" value="Добавить">
 </form>
 </body>
