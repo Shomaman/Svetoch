@@ -8,14 +8,18 @@
 <table>
     <tr th:each="theme: ${themes}">
         <td th:text="${theme.title}"></td>
-        <td><form action="theme/edit" method="get">
-            <input type="hidden" name="id" th:value="${theme.id}" />
-            <input type="submit" value="Редактировать" />
-        </form></td>
+        <td>
+            <form action="theme/edit" method="get">
+                <input type="hidden" name="id" th:value="${theme.id}"/>
+                <input type="submit" value="Редактировать"/>
+            </form>
+        </td>
+        <td>
         <td><form action="theme/delete" method="post">
-            <input type="hidden" name="id" th:value="${theme.id}" />
-            <input type="submit" value="Удалить" />
-        </form></td>
+                <input type="hidden" name="id" th:value="${theme.id}"/>
+                <input type="submit" value="Удалить"/>
+            </form>
+        </td>
     </tr>
 </table>
 <a href="localhost:8080/admin/theme/create">Добавить новую тему</a>

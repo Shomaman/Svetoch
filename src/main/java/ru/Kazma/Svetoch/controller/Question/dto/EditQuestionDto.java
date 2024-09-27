@@ -1,4 +1,4 @@
-package ru.Kazma.Svetoch.admin.Question.dto;
+package ru.Kazma.Svetoch.controller.Question.dto;
 
 public record EditQuestionDto(String title) {
 
