@@ -5,7 +5,6 @@ import ru.Kazma.Svetoch.entity.AnswerEntity;
 import ru.Kazma.Svetoch.entity.QuestionEntity;
 import ru.Kazma.Svetoch.entity.ThemeEntity;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -13,12 +12,10 @@ import java.util.Objects;
 public class UserService {
     private final ThemeService themeService;
     private final QuestionService questionService;
-    private final AnswerService answerService;
 
-    public UserService(ThemeService themeService, QuestionService questionService, AnswerService answerService) {
+    public UserService(ThemeService themeService, QuestionService questionService) {
         this.themeService = themeService;
         this.questionService = questionService;
-        this.answerService = answerService;
     }
 
     public List<ThemeEntity> getStart() {
@@ -35,7 +32,7 @@ public class UserService {
         for (int i = 0; i < questions.size(); i++) {
             if (Objects.equals(answers.get(i), questions.get(i).getAnswers()
                     .stream()
-                    .filter(answer -> answer.isCorrect())
+                    .filter(AnswerEntity::isCorrect)
                     .findFirst()
                     .get())) {
                 grade++;
@@ -44,8 +41,4 @@ public class UserService {
         return grade;
     }
 
-    public List<AnswerEntity> getAnswers(int questionId) {
-        QuestionEntity question = questionService.findById(questionId);
-        return question.getAnswers();
-    }
 }

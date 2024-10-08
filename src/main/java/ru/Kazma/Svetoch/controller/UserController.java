@@ -35,8 +35,7 @@ public class UserController {
     }
 
     @PostMapping("testing/{themeId}")
-    public String getGrage(@PathVariable("themeId") int themeId, List<String> answers, Model model,
-                           ModelMap modelMap) {
+    public String getGrage(@PathVariable("themeId") int themeId, List<String> answers, Model model) {
         Integer grage = userService.getGrage(themeId, answers);
         model.addAttribute("result", grage);
         return "user/result";
