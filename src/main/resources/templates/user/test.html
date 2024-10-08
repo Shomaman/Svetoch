@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Test</title>
+</head>
+<body>
+<table>
+    <th:block th:each="question: ${questions}">
+        <tr>
+            <td th:text="${question.title}"></td>
+        </tr>
+        <tr data-th-each="answer: ${question.answers}">
+            <td data-th-text="${answer.content}"></td>
+        </tr>
+    </th:block>
+</table>
+
+</body>
+</html>

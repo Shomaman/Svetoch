@@ -3,10 +3,8 @@ package ru.Kazma.Svetoch.service;
 import org.springframework.stereotype.Service;
 import ru.Kazma.Svetoch.controller.Question.dto.CreateQuestionDto;
 import ru.Kazma.Svetoch.controller.Question.dto.EditQuestionDto;
-import ru.Kazma.Svetoch.entity.AnswerEntity;
 import ru.Kazma.Svetoch.entity.QuestionEntity;
 import ru.Kazma.Svetoch.entity.ThemeEntity;
-import ru.Kazma.Svetoch.repository.AnswerRepository;
 import ru.Kazma.Svetoch.repository.QuestionRepository;
 import ru.Kazma.Svetoch.repository.ThemeRepository;
 
@@ -16,11 +14,9 @@ import java.util.List;
 public class QuestionService {
     private final ThemeRepository themeRepository;
     private final QuestionRepository questionRepository;
-    private final AnswerRepository answerRepository;
-    public QuestionService(ThemeRepository themeRepository, QuestionRepository questionRepository, AnswerRepository answerRepository) {
+    public QuestionService(ThemeRepository themeRepository, QuestionRepository questionRepository) {
         this.themeRepository = themeRepository;
         this.questionRepository = questionRepository;
-        this.answerRepository = answerRepository;
     }
 
     public List<QuestionEntity> findAll() {
@@ -53,7 +49,7 @@ public class QuestionService {
         return themeRepository.findAll();
     }
 
-    public List<AnswerEntity> findAllByQuestion(QuestionEntity questionEntity) {
-        return answerRepository.findAllByQuestion(questionEntity);
+    public List<QuestionEntity> findQuestionsByThemeId(Integer themeId) {
+        return questionRepository.findByTheme_Id(themeId);
     }
 }

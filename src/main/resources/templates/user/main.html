@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Добро пожаловать!</title>
+</head>
+<body>
+<h1>Добро пожаловать на наш образовательный портал Svetoch!</h1>
+<p>Выберите тему:</p>
+<table>
+    <tr th:each="theme: ${themes}">
+        <td th:text="${theme.title}"></td>
+    </tr>
+</table>
+</body>
+</html>
